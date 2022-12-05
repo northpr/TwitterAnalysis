@@ -41,8 +41,8 @@ tt_api = tweepy.API(_auth) #strem_api
 
 # ## Connect to the MongoDB Cluster
 client = pymongo.MongoClient()
-twit_db = client['twitter']  # Create 'twit_db' Database - Database name 'twitter'
-twit_col = twit_db['covid']  # Create 'twit_col' Collection - Collection name 'covid'
+twit_db = client['jobs']  # Create 'twit_db' Database - Database name 'twitter'
+twit_col = twit_db['datajobs']  # Create 'twit_col' Collection - Collection name 'covid'
 twit_col.create_index([("id", pymongo.ASCENDING)], unique=True)
 
 
@@ -57,7 +57,7 @@ verify = tt_api.verify_credentials()
 
 ## Define the query - collect current date {for testing collect 100 tweeys}
 
-search_results = tweepy.Cursor(tt_api.search_tweets, q="#datajobs",lang="en",
+search_results = tweepy.Cursor(tt_api.search_tweets, q=["#datajobs","#datascience"],lang="en",
                        tweet_mode="extended").items(500) # set parameter to 500
 
 json_data = []
